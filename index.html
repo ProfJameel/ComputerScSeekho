@@ -3,76 +3,123 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ComputerScSeekho</title>
+  <title>ComputerScSeekho - Animated Site</title>
+
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f6f6f6; }
-    header { background: #222; color: #fff; padding: 20px; text-align: center; }
-    nav { background:#333;color:#fff;padding:10px;text-align:center; }
-    nav a { color:#fff;margin:0 15px;text-decoration:none; }
-    .hero { padding: 40px 20px; text-align: center; background: #fff; }
-    .author-box { background: #fff; margin: 20px auto; max-width: 800px; padding: 20px; border-radius: 10px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
-    .author-box img { width: 180px; border-radius: 12px; }
-    footer { background: #222; color: #fff; padding: 10px; text-align: center; margin-top: 20px; }
+    :root{--nav-height:64px;}
+    body { margin: 0; font-family: Arial, sans-serif; scroll-behavior:smooth; }
+    /* Fixed top nav */
+    nav{ position: fixed; top:0; left:0; width:100%; height:var(--nav-height); display:flex; align-items:center; justify-content:center; background: rgba(0,0,0,0.6); z-index:999; backdrop-filter: blur(6px); }
+    nav a{ color:#fff; margin:0 18px; text-decoration:none; font-weight:600; }
+    nav a:hover{ color:#ffd36b; }
+
+    /* Sections */
+    section{ min-height:calc(100vh - var(--nav-height)); padding: calc(var(--nav-height) + 40px) 20px 80px; color:#fff; text-align:center; box-sizing:border-box; }
+    h1,h2{ margin:0 0 12px 0; }
+
+    /* Animated page-layer gradient */
+    body::before{
+      content:"";
+      position:fixed; inset:0; z-index:-3;
+      background: linear-gradient(120deg,#84fab0,#8fd3f4,#a6c0fe,#fbc2eb);
+      background-size: 400% 400%;
+      animation: pageGradient 18s ease infinite;
+      opacity:0.25;
+    }
+    @keyframes pageGradient{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* Section specific animated gradients */
+    .hero{ background: linear-gradient(45deg,#ff7e5f,#feb47b); background-size:400% 400%; animation:gradient1 12s ease infinite; }
+    .about{ background: linear-gradient(45deg,#43cea2,#185a9d); background-size:400% 400%; animation:gradient2 14s ease infinite; }
+    .services{ background: linear-gradient(45deg,#654ea3,#eaafc8); background-size:400% 400%; animation:gradient3 16s ease infinite; }
+    .news{ background: linear-gradient(45deg,#141e30,#243b55); background-size:400% 400%; animation:gradient4 18s ease infinite; }
+    .contact{ background: linear-gradient(45deg,#3a6186,#89253e); background-size:400% 400%; animation:gradient5 15s ease infinite; }
+
+    @keyframes gradient1{ 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+    @keyframes gradient2{ 0%{background-position:10% 50%} 50%{background-position:90% 50%} 100%{background-position:10% 50%} }
+    @keyframes gradient3{ 0%{background-position:20% 50%} 50%{background-position:80% 50%} 100%{background-position:20% 50%} }
+    @keyframes gradient4{ 0%{background-position:30% 50%} 50%{background-position:70% 50%} 100%{background-position:30% 50%} }
+    @keyframes gradient5{ 0%{background-position:40% 50%} 50%{background-position:60% 50%} 100%{background-position:40% 50%} }
+
+    /* Card style content boxes */
+    .card{ max-width:1000px; margin:20px auto; background:rgba(255,255,255,0.08); padding:32px; border-radius:12px; box-shadow:0 6px 18px rgba(0,0,0,0.25); backdrop-filter: blur(4px); color:#fff; text-align:left; }
+    .card a{ color:#fff; text-decoration:underline; }
+    .news-links a{ display:block; max-width:360px; margin:10px auto; padding:12px 16px; background:rgba(255,255,255,0.08); border-radius:8px; text-align:center; transition:0.25s; color:#fff; text-decoration:none; font-weight:600; }
+    .news-links a:hover{ transform:translateY(-4px); background:rgba(255,255,255,0.14); }
+
+    /* Responsive */
+    @media(max-width:640px){
+      nav{ padding:8px 6px; }
+      nav a{ margin:0 8px; font-size:15px; }
+      .card{ padding:18px; }
+    }
+
+    /* Footer */
+    footer{ text-align:center; padding:18px 10px; color:#fff; background:rgba(0,0,0,0.25); }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>ComputerScSeekho</h1>
-  <p>Learn Computer Science With Ease</p>
-</header>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-<nav>
-  <a href="#home">Home</a>
-  <a href="#notes">Notes</a>
-  <a href="#tutorials">Tutorials</a>
-  <a href="#projects">ML Projects</a>
-  <a href="#contact">Contact</a>
-</nav>
+  <section id="home" class="hero">
+    <div class="card">
+      <h1>Welcome to ComputerScSeekho</h1>
+      <p>Animated, modern site for Computer Science learning — notes, tutorials, ML projects and news.</p>
+    </div>
+  </section>
 
-<section class="hero" id="home">
-  <h2>Welcome to ComputerScSeekho</h2>
-  <p>Your gateway to learning Machine Learning, Programming, and Computer Science concepts.</p>
-</section>
+  <section id="about" class="about">
+    <div class="card">
+      <h2>About Us</h2>
+      <p>ComputerScSeekho is a learning platform created by Prof. Jameel to share concise study materials and project ideas for students.</p>
+    </div>
+  </section>
 
-<section class="author-box">
-  <h2>About the Author</h2>
-  <img src="IMG_20251123_135649.jpg" alt="Author Image">
-  <p><strong>Dr. Mohammed Jameel</strong> is working as a Senior Assistant Professor of Computer Science at the Jammu and Kashmir Higher Education Department.</p>
-  <p>He has many publications in reputed journals especially in AI, ML and Image Processing.</p>
-  <p>Enthusiastic learners of Computer Science are welcome here!</p>
-</section>
+  <section id="services" class="services">
+    <div class="card">
+      <h2>Services</h2>
+      <ul>
+        <li>Curated notes and PDFs</li>
+        <li>Step-by-step programming tutorials</li>
+        <li>Machine learning project templates</li>
+      </ul>
+    </div>
+  </section>
 
-<section id="notes" class="author-box">
-    <h2>Study Materials (Downloadable PDFs)</h2>
-    <p>Download high-quality notes:</p>
-    <ul>
-      <li><a href="materials/Computer_Fundamentals.pdf" download>📘 Computer Fundamentals (PDF)</a></li>
-      <li><a href="materials/Computer_Networks.pdf" download>🌐 Computer Networks (PDF)</a></li>
-      <li><a href="materials/C_Programming.pdf" download>💻 C Programming (PDF)</a></li>
-      <li><a href="materials/Operating_Systems.pdf" download>🖥️ Operating Systems (PDF)</a></li>
-      <li><a href="materials/Fundamentals_of_AI.pdf" download>🤖 Fundamentals of Artificial Intelligence (PDF)</a></li>
-    </ul>
-</section>
+  <section id="news" class="news">
+    <div class="card">
+      <h2>Latest News Links</h2>
+      <div class="news-links">
+        <a href="https://www.thehindu.com" target="_blank" rel="noopener">The Hindu</a>
+        <a href="https://www.bbc.com/news" target="_blank" rel="noopener">BBC News</a>
+        <a href="https://timesofindia.indiatimes.com" target="_blank" rel="noopener">Times of India</a>
+      </div>
+    </div>
+  </section>
 
-<section id="tutorials" class="author-box">
-  <h2>Tutorials</h2>
-  <p>Step-by-step tutorials on Programming, Machine Learning, and Research Skills.</p>
-</section>
+  <section id="contact" class="contact">
+    <div class="card">
+      <h2>Contact Information</h2>
+      <p><strong>Name:</strong> Prof. Jameel</p>
+      <p><strong>Email:</strong> <a href="mailto:jameelnaaz@gmail.com">jameelnaaz@gmail.com</a></p>
+      <p><strong>Location:</strong> JK, India</p>
+    </div>
+  </section>
 
-<section id="projects" class="author-box">
-  <h2>Machine Learning Projects</h2>
-  <p>ML project ideas and case studies including datasets and code templates.</p>
-</section>
-
-<section id="contact" class="author-box">
-  <h2>Contact</h2>
-  <p>You may contact the author through official email or academic platforms.</p>
-</section>
-
-<footer>
-  <p>&copy; 2025 ComputerScSeekho. All Rights Reserved.</p>
-</footer>
+  <footer>
+    &copy; 2025 ComputerScSeekho — All rights reserved.
+  </footer>
 
 </body>
 </html>
